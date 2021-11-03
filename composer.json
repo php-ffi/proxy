@@ -1,8 +1,22 @@
 {
     "name": "ffi/proxy",
+    "type": "library",
     "description": "PHP FFI Proxy",
     "license": "MIT",
     "keywords": ["ffi", "proxy"],
+    "support": {
+        "source": "https://github.com/php-ffi/proxy",
+        "issues": "https://github.com/php-ffi/proxy/issues",
+        "docs": "https://github.com/php-ffi/proxy/blob/master/README.md"
+    },
+    "authors": [
+        {
+            "name": "Nesmeyanov Kirill",
+            "email": "nesk@xakep.ru",
+            "homepage": "https://serafimarts.ru",
+            "role": "maintainer"
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "ext-ffi": "*"
@@ -14,7 +28,6 @@
     },
     "require-dev": {
         "vimeo/psalm": "^4.9",
-        "jetbrains/phpstorm-attributes": "^1.0",
         "phpunit/phpunit": "^9.0"
     },
     "autoload-dev": {
