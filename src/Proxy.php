@@ -13,7 +13,7 @@ namespace FFI\Proxy;
 
 use FFI\Proxy\Exception\NotAvailableException;
 
-abstract class Proxy implements ProxyInterface, ApiInterface
+abstract class Proxy implements ApiInterface
 {
     use ProxyAwareTrait;
     use ApiAwareTrait;
@@ -24,6 +24,16 @@ abstract class Proxy implements ProxyInterface, ApiInterface
      * @var \FFI
      */
     public \FFI $ffi;
+
+    /**
+     * @param \FFI|null $ffi
+     */
+    public function __construct(\FFI $ffi = null)
+    {
+        if ($ffi !== null) {
+            $this->ffi = $ffi;
+        }
+    }
 
     /**
      * Proxy should not be serializable.

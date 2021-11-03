@@ -13,14 +13,10 @@ namespace FFI\Proxy;
 
 /**
  * @property-read \FFI $ffi
- * @mixin ProxyInterface
- * @psalm-require-implements ProxyInterface
  */
 trait ProxyAwareTrait
 {
     /**
-     * @see ProxyInterface::__call()
-     *
      * @psalm-param string $method
      * @psalm-param array $args
      * @psalm-return mixed
@@ -31,9 +27,7 @@ trait ProxyAwareTrait
     }
 
     /**
-     * @see ProxyInterface::__get()
-     *
-     * @psalm-param string $name
+     * @psalm-param non-empty-string $name
      * @psalm-return mixed
      */
     public function __get(string $name)
@@ -42,14 +36,30 @@ trait ProxyAwareTrait
     }
 
     /**
-     * @see ProxyInterface::__set()
-     *
-     * @psalm-param string $name
+     * @psalm-param non-empty-string $name
      * @psalm-param mixed $value
      * @psalm-return void
      */
     public function __set(string $name, $value): void
     {
         $this->ffi->$name = $value;
+    }
+
+    /**
+     * @psalm-param non-empty-string $name
+     * @psalm-return bool
+     */
+    public function __isset(string $name): bool
+    {
+        return isset($this->ffi->$name);
+    }
+
+    /**
+     * @psalm-param non-empty-string $name
+     * @psalm-return bool
+     */
+    public function __unset(string $name): void
+    {
+        unset($this->ffi->$name);
     }
 }
