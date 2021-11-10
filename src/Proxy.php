@@ -33,6 +33,10 @@ abstract class Proxy implements ApiInterface
         if ($ffi !== null) {
             $this->ffi = $ffi;
         }
+
+        if (! Registry::has(static::class)) {
+            Registry::register($this);
+        }
     }
 
     /**

@@ -23,6 +23,8 @@ trait ProxyAwareTrait
      */
     public function __call(string $method, array $args)
     {
+        assert($method !== '', 'Method name MUST not be empty');
+
         return $this->ffi->$method(...$args);
     }
 
@@ -32,6 +34,8 @@ trait ProxyAwareTrait
      */
     public function __get(string $name)
     {
+        assert($name !== '', 'Property name MUST not be empty');
+
         return $this->ffi->$name;
     }
 
@@ -42,6 +46,8 @@ trait ProxyAwareTrait
      */
     public function __set(string $name, $value): void
     {
+        assert($name !== '', 'Property name MUST not be empty');
+
         $this->ffi->$name = $value;
     }
 
@@ -51,6 +57,8 @@ trait ProxyAwareTrait
      */
     public function __isset(string $name): bool
     {
+        assert($name !== '', 'Property name MUST not be empty');
+
         return isset($this->ffi->$name);
     }
 
@@ -60,6 +68,8 @@ trait ProxyAwareTrait
      */
     public function __unset(string $name): void
     {
+        assert($name !== '', 'Property name MUST not be empty');
+
         unset($this->ffi->$name);
     }
 }
