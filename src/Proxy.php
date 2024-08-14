@@ -21,7 +21,7 @@ abstract class Proxy implements ApiInterface
     /**
      * @param \FFI|null $ffi
      */
-    public function __construct(\FFI $ffi = null)
+    public function __construct(?\FFI $ffi = null)
     {
         if ($ffi !== null) {
             $this->ffi = $ffi;
