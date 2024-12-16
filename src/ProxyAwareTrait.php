@@ -12,6 +12,7 @@ trait ProxyAwareTrait
     /**
      * @psalm-param string $method
      * @psalm-param array $args
+     *
      * @psalm-return mixed
      */
     public function __call(string $method, array $args)
@@ -23,6 +24,7 @@ trait ProxyAwareTrait
 
     /**
      * @psalm-param non-empty-string $name
+     *
      * @psalm-return mixed
      */
     public function __get(string $name)
@@ -35,6 +37,7 @@ trait ProxyAwareTrait
     /**
      * @psalm-param non-empty-string $name
      * @psalm-param mixed $value
+     *
      * @psalm-return void
      */
     public function __set(string $name, $value): void
@@ -46,6 +49,7 @@ trait ProxyAwareTrait
 
     /**
      * @psalm-param non-empty-string $name
+     *
      * @psalm-return bool
      */
     public function __isset(string $name): bool
@@ -57,6 +61,7 @@ trait ProxyAwareTrait
 
     /**
      * @psalm-param non-empty-string $name
+     *
      * @psalm-return bool
      */
     public function __unset(string $name): void

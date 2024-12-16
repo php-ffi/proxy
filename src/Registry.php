@@ -31,6 +31,7 @@ final class Registry
      * Returns FFI API instance by its name or creates a new FFI API instance.
      *
      * @param ApiName $name
+     *
      * @return ApiImplementation
      * @throws \OutOfRangeException
      */
@@ -53,7 +54,6 @@ final class Registry
      * Returns {@see true} if FFI API instance is defined or {@see false} otherwise.
      *
      * @param ApiName $name
-     * @return bool
      */
     public static function has(string $name): bool
     {
@@ -64,8 +64,6 @@ final class Registry
 
     /**
      * Clean registry storage.
-     *
-     * @return void
      */
     public static function dispose(): void
     {
@@ -74,9 +72,6 @@ final class Registry
 
     /**
      * Register proxy implementation by its name.
-     *
-     * @param ApiInterface $api
-     * @return void
      */
     public static function register(ApiInterface $api): void
     {
@@ -88,7 +83,6 @@ final class Registry
      *
      * @param non-empty-string $name
      * @param ApiImplementation $api
-     * @return void
      */
     public static function registerAs(string $name, $api): void
     {

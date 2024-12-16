@@ -10,14 +10,15 @@ use FFI\ParserException;
 
 /**
  * @property-read \FFI $ffi
- * @mixin ApiInterface
+ *
  * @psalm-require-implements ApiInterface
+ *
+ * @mixin ApiInterface
  */
 trait ApiAwareTrait
 {
     /**
      * @param non-empty-string|CType $type
-     * @return bool
      */
     private function assertTypeArgument($type): bool
     {
@@ -36,11 +37,13 @@ trait ApiAwareTrait
 
     /**
      * @see ApiInterface::new()
+     *
      * @throws ParserException
      *
      * @psalm-param CType|non-empty-string $type
      * @psalm-param bool $owned
      * @psalm-param bool $persistent
+     *
      * @psalm-return CData|null
      */
     public function new($type, bool $owned = true, bool $persistent = false): ?CData
@@ -55,6 +58,7 @@ trait ApiAwareTrait
      *
      * @psalm-param CType|non-empty-string $type
      * @psalm-param CData|int|float|bool|null $ptr
+     *
      * @psalm-return CData|null
      */
     public function cast($type, $ptr): ?CData
@@ -68,6 +72,7 @@ trait ApiAwareTrait
      * @see ApiInterface::type()
      *
      * @psalm-param non-empty-string $type
+     *
      * @psalm-return CType|null
      */
     public function type(string $type): ?CType

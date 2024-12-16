@@ -13,21 +13,18 @@ abstract class Proxy implements ApiInterface
 
     /**
      * @psalm-allow-private-mutation
+     *
      * @psalm-readonly
-     * @var \FFI
      */
     public \FFI $ffi;
 
-    /**
-     * @param \FFI|null $ffi
-     */
     public function __construct(?\FFI $ffi = null)
     {
         if ($ffi !== null) {
             $this->ffi = $ffi;
         }
 
-        if (! Registry::has(static::class)) {
+        if (!Registry::has(static::class)) {
             Registry::register($this);
         }
     }
