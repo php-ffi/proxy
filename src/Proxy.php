@@ -14,15 +14,14 @@ abstract class Proxy implements ApiInterface
     /**
      * @psalm-allow-private-mutation
      *
-     * @psalm-readonly
+     * @readonly
      */
     public \FFI $ffi;
 
-    public function __construct(?\FFI $ffi = null)
+    public function __construct(\FFI $ffi)
     {
-        if ($ffi !== null) {
-            $this->ffi = $ffi;
-        }
+        // @phpstan-ignore-next-line : Initialize readonly property
+        $this->ffi = $ffi;
 
         if (!Registry::has(static::class)) {
             Registry::register($this);
@@ -31,6 +30,8 @@ abstract class Proxy implements ApiInterface
 
     /**
      * Proxy should not be serializable.
+     *
+     * @throws NotAvailableException
      */
     public function __sleep(): array
     {
@@ -39,6 +40,8 @@ abstract class Proxy implements ApiInterface
 
     /**
      * Proxy should not be restorable from strings.
+     *
+     * @throws NotAvailableException
      */
     public function __wakeup()
     {
@@ -47,6 +50,8 @@ abstract class Proxy implements ApiInterface
 
     /**
      * Proxy should not be serializable.
+     *
+     * @throws NotAvailableException
      */
     public function __serialize(): array
     {
@@ -55,6 +60,10 @@ abstract class Proxy implements ApiInterface
 
     /**
      * Proxy should not be restorable from strings.
+     *
+     * @param array<array-key, mixed> $data
+     *
+     * @throws NotAvailableException
      */
     public function __unserialize(array $data): void
     {
@@ -63,6 +72,8 @@ abstract class Proxy implements ApiInterface
 
     /**
      * Proxy should not be cloneable.
+     *
+     * @throws NotAvailableException
      */
     public function __clone()
     {

@@ -37,6 +37,7 @@ final class Registry
      */
     public static function get(string $name): object
     {
+        // @phpstan-ignore-next-line : Additional assertion
         assert($name !== '', self::ERROR_EMPTY_NAME);
 
         if (isset(self::$implementations[$name])) {
@@ -57,6 +58,7 @@ final class Registry
      */
     public static function has(string $name): bool
     {
+        // @phpstan-ignore-next-line : Additional assertion
         assert($name !== '', self::ERROR_EMPTY_NAME);
 
         return isset(self::$implementations[$name]);
@@ -64,6 +66,8 @@ final class Registry
 
     /**
      * Clean registry storage.
+     *
+     * @api
      */
     public static function dispose(): void
     {
@@ -72,6 +76,8 @@ final class Registry
 
     /**
      * Register proxy implementation by its name.
+     *
+     * @api
      */
     public static function register(ApiInterface $api): void
     {
@@ -81,11 +87,14 @@ final class Registry
     /**
      * Register FFI API implementation bu custom name.
      *
+     * @api
+     *
      * @param non-empty-string $name
      * @param ApiImplementation $api
      */
     public static function registerAs(string $name, $api): void
     {
+        // @phpstan-ignore-next-line : Additional assertion
         assert($name !== '', self::ERROR_EMPTY_NAME);
 
         self::$implementations[$name] = $api;
