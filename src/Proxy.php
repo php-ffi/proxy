@@ -15,13 +15,17 @@ abstract class Proxy implements ApiInterface
      * @psalm-allow-private-mutation
      *
      * @readonly
+     *
+     * @phpstan-ignore-next-line : Allow unitialized property
      */
     public \FFI $ffi;
 
-    public function __construct(\FFI $ffi)
+    public function __construct(?\FFI $ffi = null)
     {
-        // @phpstan-ignore-next-line : Initialize readonly property
-        $this->ffi = $ffi;
+        if ($ffi !== null) {
+            // @phpstan-ignore-next-line : Initialize readonly property
+            $this->ffi = $ffi;
+        }
 
         if (!Registry::has(static::class)) {
             Registry::register($this);
